@@ -65,15 +65,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
 			if (Input.GetKey (KeyCode.C)) {
 				transform.position = new Vector3 (transform.position.x, height, transform.position.z);
-//				isCrounching = true;
 			} 
-//			else {
-//				isCrounching = false;
-//			}
-//
-//			if (isCrounching) {
-//				isCrouching ();
-//			}
+
 
             RotateView();
             // the jump state needs to read here to make sure it is not missed
