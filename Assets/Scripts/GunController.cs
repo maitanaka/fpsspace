@@ -17,6 +17,8 @@ public class GunController : MonoBehaviour {
 	void Start(){
 		bulletInterval = 0;
 		bulletController = player.GetComponent<BulletController> ();
+		audioSource = bulletFire.GetComponent<AudioSource> ();
+		bulletFireSound = audioSource.GetComponent<AudioClip> ();
 	}
 
 	// Update is called once per frame
@@ -37,8 +39,6 @@ public class GunController : MonoBehaviour {
 		bulletInterval = 0.0f;
 		bulletHitPosition = hit.point;
 		bulletFire = Instantiate (Bulletfire, bulletHitPosition, transform.rotation);
-		audioSource = bulletFire.GetComponent<AudioSource> ();
-		bulletFireSound = audioSource.GetComponent<AudioClip> ();
 		audioSource.PlayOneShot (bulletFireSound);
 		bulletController.changeBulletCount ();
 		Destroy (bulletFire, 0.1f);
