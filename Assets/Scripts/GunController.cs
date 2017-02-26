@@ -12,9 +12,11 @@ public class GunController : MonoBehaviour {
 	private AudioClip bulletFireSound;
 	private GameObject bulletFire;
 	private float bulletInterval;
+	private BulletController bulletController;
 
 	void Start(){
 		bulletInterval = 0;
+		bulletController = player.GetComponent<BulletController> ();
 	}
 
 	// Update is called once per frame
@@ -33,7 +35,6 @@ public class GunController : MonoBehaviour {
 
 	private void Shoot(RaycastHit hit){
 		bulletInterval = 0.0f;
-		BulletController bulletController = player.GetComponent<BulletController> ();
 		bulletHitPosition = hit.point;
 		bulletFire = Instantiate (Bulletfire, bulletHitPosition, transform.rotation);
 		audioSource = bulletFire.GetComponent<AudioSource> ();
