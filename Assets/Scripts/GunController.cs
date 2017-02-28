@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour {
 
-	[SerializeField] GameObject Bulletfire;
+	[SerializeField] GameObject bulletFire;
 	[SerializeField] GameObject player;
+	[SerializeField] AudioClip reloadAudioClip;
 
 	private Vector3 bulletHitPosition;
-	private AudioSource audioSource;
+	private AudioSource fireAudioSource;
 	private AudioClip bulletFireSound;
-	private GameObject bulletFire;
+	private AudioSource reloadAudioSource;
 	private float bulletInterval;
 	private BulletController bulletController;
 
 	void Start(){
 		bulletInterval = 0;
 		bulletController = player.GetComponent<BulletController> ();
-		audioSource = bulletFire.GetComponent<AudioSource> ();
-		bulletFireSound = audioSource.GetComponent<AudioClip> ();
+		fireAudioSource = bulletFire.GetComponent<AudioSource> ();
+		bulletFireSound = fireAudioSource.GetComponent<AudioClip> ();
+		reloadAudioSource = gameObject.GetComponent<AudioSource> ();
 	}
 
 	// Update is called once per frame
@@ -33,14 +35,21 @@ public class GunController : MonoBehaviour {
 				}
 			}
 		}
+
+		if(Input.GetKey(KeyCode.R)){
+			if (bulletController.bulletCount < 30) {
+				bulletController.ReloadBullets ();
+				reloadAudioSource.PlayOneShot (reloadAudioClip);
+			}
+		}
 	}
 
 	private void Shoot(RaycastHit hit){
 		bulletInterval = 0.0f;
 		bulletHitPosition = hit.point;
-		bulletFire = Instantiate (Bulletfire, bulletHitPosition, transform.rotation);
-		audioSource.PlayOneShot (bulletFireSound);
+		GameObject BulletFire = Instantiate (bulletFire, bulletHitPosition, transform.rotation);
+		fireAudioSource.PlayOneShot (bulletFireSound);
 		bulletController.changeBulletCount ();
-		Destroy (bulletFire, 0.1f);
+		Destroy (BulletFire, 0.2f);
 	}
 }
