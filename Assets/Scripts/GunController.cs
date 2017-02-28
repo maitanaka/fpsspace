@@ -7,20 +7,17 @@ public class GunController : MonoBehaviour {
 	[SerializeField] GameObject bulletFire;
 	[SerializeField] GameObject player;
 	[SerializeField] AudioClip reloadAudioClip;
+	[SerializeField] AudioClip bulletFireSound;
 
 	private Vector3 bulletHitPosition;
-	private AudioSource fireAudioSource;
-	private AudioClip bulletFireSound;
-	private AudioSource reloadAudioSource;
+	private AudioSource AudioSource;
 	private float bulletInterval;
 	private BulletController bulletController;
 
 	void Start(){
 		bulletInterval = 0;
 		bulletController = player.GetComponent<BulletController> ();
-		fireAudioSource = bulletFire.GetComponent<AudioSource> ();
-		bulletFireSound = fireAudioSource.GetComponent<AudioClip> ();
-		reloadAudioSource = gameObject.GetComponent<AudioSource> ();
+		AudioSource = gameObject.GetComponent<AudioSource> ();
 	}
 
 	// Update is called once per frame
@@ -38,8 +35,8 @@ public class GunController : MonoBehaviour {
 
 		if(Input.GetKey(KeyCode.R)){
 			if (bulletController.bulletCount < 30) {
-				bulletController.ReloadBullets ();
-				reloadAudioSource.PlayOneShot (reloadAudioClip);
+				Reload ();
+				AudioSource.PlayOneShot (reloadAudioClip);
 			}
 		}
 	}
@@ -48,8 +45,13 @@ public class GunController : MonoBehaviour {
 		bulletInterval = 0.0f;
 		bulletHitPosition = hit.point;
 		GameObject BulletFire = Instantiate (bulletFire, bulletHitPosition, transform.rotation);
-		fireAudioSource.PlayOneShot (bulletFireSound);
-		bulletController.changeBulletCount ();
+		AudioSource.PlayOneShot (bulletFireSound);
+		bulletController.bulletCount -= 1;
 		Destroy (BulletFire, 0.2f);
+	}
+
+	private void Reload(){
+		bulletController.bulletBoxCount -= (30 - bulletController.bulletCount);
+		bulletController.bulletCount = 30;
 	}
 }

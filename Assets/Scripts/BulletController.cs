@@ -13,17 +13,4 @@ public class BulletController : MonoBehaviour {
 		bulletCount = 30;
 		bulletBoxCount = 150;
 	}
-
-	public void changeBulletCount(){
-		bulletCount -= 1;
-	}
-
-	public void ChangeBulletBoxCount(){
-		bulletBoxCount -= 1;
-	}
-
-	public void ReloadBullets(){
-		bulletBoxCount -= (30 - bulletCount);
-		bulletCount = 30;
-	}
 }
