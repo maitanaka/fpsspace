@@ -5,18 +5,16 @@ using UnityEngine;
 public class GunController : MonoBehaviour {
 
 	[SerializeField] GameObject bulletFire;
-	[SerializeField] GameObject player;
+	[SerializeField] BulletController player;
 	[SerializeField] AudioClip reloadAudioClip;
 	[SerializeField] AudioClip bulletFireSound;
 
 	private Vector3 bulletHitPosition;
 	private AudioSource AudioSource;
 	private float bulletInterval;
-	private BulletController bulletController;
 
 	void Start(){
 		bulletInterval = 0;
-		bulletController = player.GetComponent<BulletController> ();
 		AudioSource = gameObject.GetComponent<AudioSource> ();
 	}
 
@@ -34,9 +32,8 @@ public class GunController : MonoBehaviour {
 		}
 
 		if(Input.GetKey(KeyCode.R)){
-			if (bulletController.bulletCount < 30) {
+			if (player.bulletCount < 30) {
 				Reload ();
-				AudioSource.PlayOneShot (reloadAudioClip);
 			}
 		}
 	}
@@ -46,12 +43,13 @@ public class GunController : MonoBehaviour {
 		bulletHitPosition = hit.point;
 		GameObject BulletFire = Instantiate (bulletFire, bulletHitPosition, transform.rotation);
 		AudioSource.PlayOneShot (bulletFireSound);
-		bulletController.bulletCount -= 1;
+		player.bulletCount -= 1;
 		Destroy (BulletFire, 0.2f);
 	}
 
 	private void Reload(){
-		bulletController.bulletBoxCount -= (30 - bulletController.bulletCount);
-		bulletController.bulletCount = 30;
+		player.bulletBoxCount -= (30 - player.bulletCount);
+		player.bulletCount = 30;
+		AudioSource.PlayOneShot (reloadAudioClip);
 	}
 }
