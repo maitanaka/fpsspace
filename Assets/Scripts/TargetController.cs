@@ -12,4 +12,10 @@ public class TargetController : MonoBehaviour {
 		hp = 5;
 		anim = GetComponent<Animator>();
 	}
+
+	public IEnumerator Recover(){
+		yield return new WaitForSeconds(5.0f);
+		anim.SetBool ("broken", false);
+		hp = 5;
+	}
 }

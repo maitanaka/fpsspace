@@ -31,7 +31,7 @@ public class GunController : MonoBehaviour {
 				RaycastHit hit = new RaycastHit ();
 				if (Physics.Raycast (ray, out hit)) {
 					Shoot (hit);
-					if (hit.collider.name == "target") {
+					if (hit.collider.gameObject.GetComponent<TargetController>() != null) {
 						ShootTarget (hit);
 					}
 				}
@@ -66,7 +66,7 @@ public class GunController : MonoBehaviour {
 
 		if (target.hp == 0) {
 			target.anim.SetBool ("broken", true);
-			Invoke ("RecoverTarget", 5);
+			StartCoroutine (target.Recover ());
 		}
 	}
 
@@ -76,8 +76,4 @@ public class GunController : MonoBehaviour {
 		AudioSource.PlayOneShot (reloadAudioClip);
 	}
 
-	private void RecoverTarget(){
-		target.anim.SetBool ("broken", false);
-		target.hp = 5;
-	}
 }
