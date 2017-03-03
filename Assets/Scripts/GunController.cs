@@ -8,6 +8,9 @@ public class GunController : MonoBehaviour {
 	[SerializeField] BulletController player;
 	[SerializeField] AudioClip reloadAudioClip;
 	[SerializeField] AudioClip bulletFireSound;
+	[SerializeField] TargetController target;
+	[SerializeField] Transform headMarker;
+	[SerializeField] int score;
 
 	private Vector3 bulletHitPosition;
 	private AudioSource AudioSource;
@@ -16,6 +19,7 @@ public class GunController : MonoBehaviour {
 	void Start(){
 		bulletInterval = 0;
 		AudioSource = gameObject.GetComponent<AudioSource> ();
+		score = 0;
 	}
 
 	// Update is called once per frame
@@ -27,6 +31,9 @@ public class GunController : MonoBehaviour {
 				RaycastHit hit = new RaycastHit ();
 				if (Physics.Raycast (ray, out hit)) {
 					Shoot (hit);
+					if (hit.collider.name == "target") {
+						ShootTarget (hit);
+					}
 				}
 			}
 		}
@@ -47,9 +54,30 @@ public class GunController : MonoBehaviour {
 		Destroy (BulletFire, 0.2f);
 	}
 
+	private void ShootTarget(RaycastHit hit){
+		float distance = Vector3.Distance(hit.point, headMarker.position);
+		if (distance <= 0.1) {
+			score += 5;
+		} else {
+			score += 2;
+		}
+
+		target.hp -= 1;
+
+		if (target.hp == 0) {
+			target.anim.SetBool ("broken", true);
+			Invoke ("RecoverTarget", 5);
+		}
+	}
+
 	private void Reload(){
 		player.bulletBoxCount -= (30 - player.bulletCount);
 		player.bulletCount = 30;
 		AudioSource.PlayOneShot (reloadAudioClip);
+	}
+
+	private void RecoverTarget(){
+		target.anim.SetBool ("broken", false);
+		target.hp = 5;
 	}
 }
