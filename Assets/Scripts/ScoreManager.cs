@@ -6,6 +6,6 @@ public class ScoreManager : MonoBehaviour {
 	public int targetScore;
 
 	void Start(){
-		targetScore = 5;
+		targetScore = 0;
 	}
 }
