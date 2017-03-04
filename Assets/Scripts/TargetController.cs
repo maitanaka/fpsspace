@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class TargetController : MonoBehaviour {
 
-	public int hp;
+	[SerializeField] int hp;
+	[SerializeField] Transform headMarker;
+	[SerializeField] ScoreManager score;
 	public Animator anim;
 
 	// Use this for initialization
@@ -13,8 +15,23 @@ public class TargetController : MonoBehaviour {
 		anim = GetComponent<Animator>();
 	}
 
-	public IEnumerator Recover(){
-		yield return new WaitForSeconds(5.0f);
+	public void ShootTarget(RaycastHit hit){
+		float distance = Vector3.Distance(hit.point, headMarker.position);
+		if (distance <= 0.1) {
+			score.targetScore += 5;
+		} else {
+			score.targetScore += 2;
+		}
+
+		hp -= 1;
+
+		if (hp == 0) {
+			anim.SetBool ("broken", true);
+			Invoke ("Recover", 5);
+		}
+	}
+
+	private void Recover(){
 		anim.SetBool ("broken", false);
 		hp = 5;
 	}
