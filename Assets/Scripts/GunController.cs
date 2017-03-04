@@ -30,7 +30,6 @@ public class GunController : MonoBehaviour {
 				if (Physics.Raycast (ray, out hit)) {
 					Shoot (hit);
 					if (hit.collider.gameObject.GetComponent<TargetController>() != null) {
-						print ("あああ");
 						target.ShootTarget (hit);
 					}
 				}
