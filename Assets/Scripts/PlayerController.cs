@@ -16,26 +16,28 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		Ray ray = new Ray(transform.position,transform.forward);
+		Ray ray = new Ray (transform.position, transform.forward);
 		bulletInterval += Time.deltaTime;
-		if (Input.GetMouseButton (0)) {
-			if (bulletInterval >= 0.2f) {
-				RaycastHit hit = new RaycastHit ();
-				if (Physics.Raycast (ray, out hit)) {
-					if (player.bulletCount != 0) {
-						Vector3 raydirection = ray.direction;
-						gunController.Shoot (hit , raydirection);
-						if (hit.collider.gameObject.GetComponent<TargetController>() != null) {
-							target.ShootTarget (hit);
-						}
-					}
-				}
-			}
-		}
-
-		if(Input.GetKey(KeyCode.R)){
+		if (Input.GetKey (KeyCode.R)) {
 			if (player.bulletCount < 30) {
 				gunController.Reload ();
+			}
+		}
+		if (!Input.GetMouseButton (0)) {
+			return;
+		}
+		if (bulletInterval < 0.2f) {
+			return;
+		}
+
+		RaycastHit hit = new RaycastHit ();
+		if (Physics.Raycast (ray, out hit)) {
+			if (player.bulletCount != 0) {
+				Vector3 raydirection = ray.direction;
+				gunController.Shoot (hit, raydirection);
+				if (hit.collider.gameObject.GetComponent<TargetController> () != null) {
+					target.ShootTarget (hit);
+				}
 			}
 		}
 	}
