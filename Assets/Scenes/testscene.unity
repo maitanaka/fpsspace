@@ -8527,19 +8527,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.19875528
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.9800492
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_RootOrder
@@ -8555,7 +8555,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 22.928001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8200000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: MaxDistance
@@ -16487,6 +16487,25 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1037142126}
   m_Mesh: {fileID: 4300586, guid: 70bd327581f110b4a936db6df5f9ed54, type: 3}
+--- !u!1 &1042472022 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+  m_PrefabInternal: {fileID: 548043530}
+--- !u!114 &1042472026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1042472022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efebd755efe68495da353f0dc18b8bf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunController: {fileID: 2080076755}
+  player: {fileID: 1367026292}
+  target: {fileID: 2094891016}
+  bulletInterval: 0
 --- !u!1001 &1048865606
 Prefab:
   m_ObjectHideFlags: 0
@@ -16639,7 +16658,7 @@ MonoBehaviour:
   textScore: {fileID: 1730285994}
   textBullet: {fileID: 1263214484}
   textBulletBox: {fileID: 1751188424}
-  score: {fileID: 1367026287}
+  scoreManager: {fileID: 1367026287}
   bullet: {fileID: 1367026292}
 --- !u!4 &1063062056
 Transform:
@@ -22395,15 +22414,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: cd8d56469cf64654eaa21e15c6ae7c18, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.7979956
+      value: 0.79315186
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cd8d56469cf64654eaa21e15c6ae7c18, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.37600023
+      value: -0.207
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cd8d56469cf64654eaa21e15c6ae7c18, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.0339947
+      value: 1.0336151
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cd8d56469cf64654eaa21e15c6ae7c18, type: 3}
       propertyPath: m_LocalRotation.x
@@ -22411,7 +22430,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cd8d56469cf64654eaa21e15c6ae7c18, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.078554355
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cd8d56469cf64654eaa21e15c6ae7c18, type: 3}
       propertyPath: m_LocalRotation.z
@@ -22419,7 +22438,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cd8d56469cf64654eaa21e15c6ae7c18, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9969099
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cd8d56469cf64654eaa21e15c6ae7c18, type: 3}
       propertyPath: m_RootOrder
@@ -22433,6 +22452,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3ec8f4bc8e3774189a67ef118344dd2f, type: 2}
+    - target: {fileID: 400000, guid: cd8d56469cf64654eaa21e15c6ae7c18, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -9.011001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd8d56469cf64654eaa21e15c6ae7c18, type: 3}
   m_IsPrefabParent: 0
@@ -32084,7 +32107,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400004, guid: 6e4b42461da5a4123b8101091224d9ab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 234.73
+      value: 233.12
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 6e4b42461da5a4123b8101091224d9ab, type: 3}
       propertyPath: m_LocalPosition.y
@@ -32092,7 +32115,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 6e4b42461da5a4123b8101091224d9ab, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 183.09
+      value: 184.633
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 6e4b42461da5a4123b8101091224d9ab, type: 3}
       propertyPath: m_LocalRotation.x
@@ -32690,7 +32713,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 32.9, y: -4.3}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2012914484
@@ -34061,10 +34084,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletFire: {fileID: 1688166524734602, guid: 75903634b673e458abc3c32fd4d25521, type: 2}
   player: {fileID: 1367026292}
-  scoreManager: {fileID: 0}
+  scoreManager: {fileID: 1367026287}
+  target: {fileID: 2094891016}
+  playerController: {fileID: 1042472026}
   reloadAudioClip: {fileID: 8300000, guid: 3c5c1d4d7b9307c458890a4beb12e4ae, type: 3}
   bulletFireSound: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf, type: 3}
-  target: {fileID: 2094891016}
 --- !u!82 &2080076757
 AudioSource:
   m_ObjectHideFlags: 0
