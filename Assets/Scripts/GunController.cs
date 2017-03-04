@@ -6,8 +6,10 @@ public class GunController : MonoBehaviour {
 
 	[SerializeField] GameObject bulletFire;
 	[SerializeField] BulletController player;
+	[SerializeField] ScoreManager scoreManager;
 	[SerializeField] AudioClip reloadAudioClip;
 	[SerializeField] AudioClip bulletFireSound;
+	[SerializeField] TargetController target;
 
 	private Vector3 bulletHitPosition;
 	private AudioSource AudioSource;
@@ -27,6 +29,9 @@ public class GunController : MonoBehaviour {
 				RaycastHit hit = new RaycastHit ();
 				if (Physics.Raycast (ray, out hit)) {
 					Shoot (hit);
+					if (hit.collider.gameObject.GetComponent<TargetController>() != null) {
+						target.ShootTarget (hit);
+					}
 				}
 			}
 		}
@@ -52,4 +57,5 @@ public class GunController : MonoBehaviour {
 		player.bulletCount = 30;
 		AudioSource.PlayOneShot (reloadAudioClip);
 	}
+
 }
