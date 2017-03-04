@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour {
 	[SerializeField] Text textScore;
 	[SerializeField] Text textBullet;
 	[SerializeField] Text textBulletBox;
-	public ScoreManager score;
+	public ScoreManager scoreManager;
 	public BulletController bullet;
 
 	// Use this for initialization
@@ -25,12 +25,12 @@ public class GameManager : MonoBehaviour {
 	}
 
 	private void showTime(){
-		time = time - Time.deltaTime;
+		time -= Time.deltaTime;
 		textTime.text = "Time :" + time.ToString("N1");
 	}
 
 	private void showScore(){
-		textScore.text = "Pt :" + score.targetScore.ToString ();
+		textScore.text = "Pt :" + scoreManager.targetScore.ToString ();
 	}
 
 	private void showBulletNums(){
