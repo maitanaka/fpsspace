@@ -9,14 +9,23 @@ public class GunController : MonoBehaviour {
 	[SerializeField] ScoreManager scoreManager;
 	[SerializeField] TargetController target;
 	[SerializeField] PlayerController playerController;
+	[SerializeField] GameObject snipe;
+	[SerializeField] Camera camera;
 
 	private Vector3 bulletHitPosition;
 	private AudioSource AudioSource;
+	private bool isSniping;
 	public AudioClip reloadAudioClip;
 	public AudioClip bulletFireSound;
 
 	void Start(){
 		AudioSource = gameObject.GetComponent<AudioSource> ();
+	}
+
+	void Update(){
+		if (Input.GetMouseButtonDown (1)) {
+			Snipe ();
+		}
 	}
 
 
@@ -33,6 +42,18 @@ public class GunController : MonoBehaviour {
 		player.bulletBoxCount -= (30 - player.bulletCount);
 		player.bulletCount = 30;
 		AudioSource.PlayOneShot (reloadAudioClip);
+	}
+
+	private void Snipe(){
+		if (isSniping) {
+			snipe.SetActive (false);
+			camera.fieldOfView = 60f;
+			isSniping = false;
+		} else {
+			snipe.SetActive (true);
+			camera.fieldOfView = 30f;
+			isSniping = true;
+		}
 	}
 
 }
