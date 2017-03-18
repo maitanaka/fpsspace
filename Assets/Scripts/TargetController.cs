@@ -7,12 +7,14 @@ public class TargetController : MonoBehaviour {
 	[SerializeField] int hp;
 	[SerializeField] Transform headMarker;
 	[SerializeField] ScoreManager score;
+	[SerializeField] GameManager gameManager;
 	public Animator anim;
 
 	// Use this for initialization
 	void Start () {
 		hp = 5;
 		anim = GetComponent<Animator>();
+		score = gameManager.scoreManager;
 	}
 
 	public void ShootTarget(RaycastHit hit){

@@ -6,12 +6,19 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] GunController gunController;
 	[SerializeField] BulletController player;
 	[SerializeField] TargetController target;
+	[SerializeField] ScoreManager score;
 
 	public float bulletInterval;
 
 	// Use this for initialization
 	void Start(){
 		bulletInterval = 0;
+		GameObject obj = GameObject.FindWithTag ("GameManager");
+		GameManager gameManager = obj.GetComponent<GameManager> ();
+		gameManager.bullet = player;
+		score = gameManager.scoreManager;
+		target = gameManager.target;
+		gunController.snipe = gameManager.snipe;
 	}
 
 	// Update is called once per frame

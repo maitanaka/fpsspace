@@ -9,7 +9,6 @@ public class GunController : MonoBehaviour {
 	[SerializeField] ScoreManager scoreManager;
 	[SerializeField] TargetController target;
 	[SerializeField] PlayerController playerController;
-	[SerializeField] GameObject snipe;
 	[SerializeField] Camera camera;
 
 	private Vector3 bulletHitPosition;
@@ -17,6 +16,7 @@ public class GunController : MonoBehaviour {
 	private bool isSniping;
 	public AudioClip reloadAudioClip;
 	public AudioClip bulletFireSound;
+	public GameObject snipe;
 
 	void Start(){
 		AudioSource = gameObject.GetComponent<AudioSource> ();

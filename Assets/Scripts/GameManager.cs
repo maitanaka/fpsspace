@@ -9,8 +9,10 @@ public class GameManager : MonoBehaviour {
 	[SerializeField] Text textScore;
 	[SerializeField] Text textBullet;
 	[SerializeField] Text textBulletBox;
+	public GameObject snipe;
 	public ScoreManager scoreManager;
 	public BulletController bullet;
+	public TargetController target;
 
 	// Use this for initialization
 	void Start () {
